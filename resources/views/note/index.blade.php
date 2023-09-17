@@ -3,9 +3,14 @@
 <a href="{{route("note.create")}}">Create new note</a>
     <ul>
         @forelse ($notes as $note)
-            <li><a href="z">{{ $note->title }} </a>
+            <li><a href="{{route('note.show', $note->id)}}">{{ $note->title }} </a>
                 <a href="{{route("note.edit" ,  $note -> id)}}">EDIT</a>
-                <a href="">DELETE</a>
+                <form method="POST" action="{{route("note.destroy", $note->id)}}">
+                    @csrf   
+                    @method('DELETE')
+                    <input type="submit" value="DELETE" class="bg-red">
+                    DELETE
+                </form>
 
             
             </li>
